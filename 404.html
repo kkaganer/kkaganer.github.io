@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- content/404.md · Title, Meta description -->
+<title>Page not found · Kristina Kaganer</title>
+<meta name="description" content="That address isn’t one of the four pages on this site.">
+<meta name="robots" content="noindex">
+<!-- No share card here: a 404 is not a page anyone means to share. Every href
+     on this page is root-relative, because a 404 is served for an address at
+     any depth. -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F5F0">
+<!-- Type is self-hosted in /assets/fonts/ (D-020). Not preloaded: measured at
+     390 on slow 4G with 4x CPU, preloading both faces cost 1108ms of first
+     contentful paint, because a 129KB serif went ahead of the text. -->
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- content/home.md · ## Masthead and nav -->
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-left">
+      <a class="site-name" href="/">Kristina Kaganer</a>
+      <a class="nav-linkedin" href="https://www.linkedin.com/in/kristinakaganer" rel="me">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        <span class="visually-hidden">LinkedIn</span>
+      </a>
+    </div>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/work/">Work</a></li>
+        <li><a href="/speaking/">Speaking</a></li>
+        <li><a href="/about/">About</a></li>
+        <li class="nav-cta"><a class="nav-contact" href="mailto:kristina@kristinakaganer.com?subject=What%20I%27m%20stuck%20on">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<div class="wrap">
+
+  <!-- content/404.md · ## Claim -->
+  <section class="section" aria-labelledby="notfound-title">
+    <div class="col-main">
+      <h1 id="notfound-title" class="page-title">This page isn’t here</h1>
+      <div class="prose after-title">
+        <p class="lede">The link is wrong, or the page moved. The site is four pages, so what you wanted is one of them.</p>
+      </div>
+      <div class="actions">
+        <a class="button" href="/">Back to home</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<!-- content/footer.md · Floating back to top -->
+<a class="back-to-top" href="#top" hidden><span class="visually-hidden">Back to top</span></a>
+
+</body>
+</html>
