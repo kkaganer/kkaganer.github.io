@@ -705,13 +705,15 @@ main > .wrap > .section:first-child { border-top: 0; }
   cursor: pointer;
 }
 .button:hover { background: var(--paper); color: var(--ink); }
-/* .hosted-note is the same quiet line as .write-to. It was written for
-   Webinars, which left this repo at D-031, and Speaking's Booking section now
-   uses it for the line under the PDF download (D-035). It is a separate class
-   because the checks count p.write-to to prove the close block carries exactly
-   one, and a second p.write-to anywhere on the page would fail that. */
-.write-to,
-.hosted-note {
+/* .write-to is the quiet line under a close-block button. It had a twin,
+   .hosted-note, for a line that is not a close block: Webinars used it and
+   left this repo at D-031, then Speaking borrowed it for the note under the
+   PDF download at D-035. D-037 cut that note, so .hosted-note has no caller
+   and is gone. The class existed at all because the checks count p.write-to to
+   prove the close block carries exactly one, and a second p.write-to anywhere
+   on the page would fail that. Anything quiet and outside a close block needs
+   its own class again for the same reason. */
+.write-to {
   font-family: var(--sans);
   font-size: 0.9375rem;
   line-height: 1.5;
@@ -1005,7 +1007,6 @@ main { padding-bottom: 96px; }
 .talks-more,
 .sessions-empty { margin: 16px 0 0; font-family: var(--sans); font-size: 1rem; font-weight: 600; }
 .sessions-empty { margin-top: 0; }
-.sessions-empty + .hosted-note { margin-top: 12px; }
 
 /* Speaking bio: the host intro. A third-person block inside a first-person
    page, so it is set apart rather than styled up. It reuses .aside's italic
@@ -1095,7 +1096,7 @@ main { padding-bottom: 96px; }
      and "download" to a reader holding a sheet of paper, and the sheet is the
      download. The address stays, because it is the one thing a booker needs
      off the page. */
-  .actions, .hosted-note { display: none; }
+  .actions { display: none; }
   /* Print is paper, not a screen at arm's length, so the whole page steps down
      one size. At screen sizes the profile runs to six A4 sheets for four sheets
      of content, and a booker printing it pays for the difference. */
