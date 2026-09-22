@@ -705,9 +705,11 @@ main > .wrap > .section:first-child { border-top: 0; }
   cursor: pointer;
 }
 .button:hover { background: var(--paper); color: var(--ink); }
-/* .hosted-note is the same quiet line as .write-to, used on Webinars to say
-   that the register link leaves the site. It is a separate class because the
-   checks count p.write-to to prove the close block carries exactly one. */
+/* .hosted-note is the same quiet line as .write-to. It was written for
+   Webinars, which left this repo at D-031, and Speaking's Booking section now
+   uses it for the line under the PDF download (D-035). It is a separate class
+   because the checks count p.write-to to prove the close block carries exactly
+   one, and a second p.write-to anywhere on the page would fail that. */
 .write-to,
 .hosted-note {
   font-family: var(--sans);
@@ -1005,15 +1007,114 @@ main { padding-bottom: 96px; }
 .sessions-empty { margin-top: 0; }
 .sessions-empty + .hosted-note { margin-top: 12px; }
 
+/* Speaking bio: the host intro. A third-person block inside a first-person
+   page, so it is set apart rather than styled up. It reuses .aside's italic
+   serif and ink rule, and adds only the label that says who it is for, because
+   an unlabelled third-person paragraph in her own bio reads as a slip. */
+.host-intro { margin-top: 32px; max-width: var(--reading); }
+.host-intro-label {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+.host-intro-text { margin: 0; }
+
+/* Speaking topics: the mechanism paragraph under each lead. One step down from
+   the lead in size and set in the muted ink, because a reader who stops at the
+   lead has the topic and a reader who goes on gets how it works. Held back for
+   length until D-035. */
+.topics .mechanism {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 10px 0 0;
+}
+
+/* Booking: a two-column spec list at desktop, stacked on a phone. It holds one
+   row, Formats, and the list survives the count because the layout is per row.
+   D-036 cut the other four and with them .slot, the muted italic treatment for
+   a row with no fact behind it: she would rather the page carry one row that is
+   true than five where three say "to confirm". If a practical is ever answered
+   it is a new .spec and nothing else has to change. */
+.specs {
+  border-top: 1px solid var(--ink);
+  max-width: var(--reading);
+  margin: 0;
+}
+.spec {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.spec dt {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.spec dd { margin: 0; font-size: 1.0625rem; line-height: 1.55; }
+@media (min-width: 600px) {
+  .spec { grid-template-columns: 200px minmax(0, 1fr); }
+  .spec dt { padding-top: 2px; }
+}
+
 /* Print. Last in the file on purpose: these rules are single-class, so the
    later .on-page and .section rules would otherwise win on source order
    and the sticky sub-navigation would print. */
 @media print {
+  /* A4 with a 14mm margin. Chrome is told preferCSSPageSize, so this rule and
+     not the print dialog decides the sheet (D-035). */
+  @page { size: A4; margin: 14mm; }
   html, body { background: #fff; color: #000; }
   .skip, .on-page, .back-to-top, .video { display: none; }
-  .masthead { position: static; border-bottom: 1px solid #000; }
-  .section { border-top-width: 1px; break-inside: avoid; }
+  /* The masthead keeps her name and loses its navigation. A nav bar on paper
+     is five words a reader cannot click and the LinkedIn mark is a sixth, and
+     together they cost the first sheet a fifth of its height. The address a
+     booker actually needs is in the close block, which prints. */
+  .site-nav, .nav-linkedin { display: none; }
+  .masthead { position: static; background: none; border-bottom: 1px solid #000; }
+  .masthead .wrap { padding-top: 0; padding-bottom: 8px; }
+  /* break-inside on the section was written when the tallest section on the
+     site was four short rows. Bio and Topics are now taller than an A4 sheet,
+     and a block that cannot break and cannot fit starts a new page, which is
+     how the first profile came out at six pages for four pages of content.
+     The break rules moved down to the rows, which are the things that must
+     not be split. */
+  .section { border-top-width: 1px; break-inside: auto; }
   h1, h2, h3 { break-after: avoid; }
-  .talks > li, .proofed, .contents > li { break-inside: avoid; }
+  .talks > li, .proofed, .contents > li, .topics > li, .spec, .host-intro { break-inside: avoid; }
   .aside, .proof { color: #000; }
+  /* Controls are not printable. The button and the line under it say "click"
+     and "download" to a reader holding a sheet of paper, and the sheet is the
+     download. The address stays, because it is the one thing a booker needs
+     off the page. */
+  .actions, .hosted-note { display: none; }
+  /* Print is paper, not a screen at arm's length, so the whole page steps down
+     one size. At screen sizes the profile runs to six A4 sheets for four sheets
+     of content, and a booker printing it pays for the difference. */
+  .page-title { font-size: 1.875rem; }
+  .section-title { font-size: 1.375rem; }
+  .prose p, .lede, .lead, .aside, .topics .lead { font-size: 0.9375rem; line-height: 1.5; }
+  .topics .topic-title { font-size: 1.125rem; }
+  .topics .mechanism { font-size: 0.875rem; line-height: 1.45; }
+  .spec dd, .talk-title, .talk-event { font-size: 0.9375rem; }
+  .portrait img { width: 88px; height: 88px; }
+  .section { padding: 14px 0; }
+  /* On screen the claim runs straight into the on-page bar, so it carries no
+     bottom padding. In print the bar is gone and the next section's rule lands
+     on the claim's last line without it. */
+  .section.before-on-page { padding-bottom: 14px; }
+  .topics > li { padding-top: 14px; padding-bottom: 14px; }
+  .contents > li, .spec { padding: 10px 0; }
+  main { padding-bottom: 0; }
+  /* A link in print is ink, not blue, and its target is on the same sheet or
+     on a site the reader can type in. */
+  a { color: #000; }
 }
