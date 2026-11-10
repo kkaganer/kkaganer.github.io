@@ -227,9 +227,7 @@
   .contact-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 48px 96px; margin-top: 72px; }
   .direct { display: grid; gap: 36px; justify-items: start; align-content: start; }
   .go { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; text-decoration: none; font: 700 17px/1 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--mint); }
-  .go::after { content: "\2192"; font-size: 1.15em; line-height: 1; transition: transform 0.2s; }
-  .go:hover span { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }   /* the words underline, the arrow moves */
-  .go:hover::after { transform: translateX(4px); }
+  .go:hover span { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
   .direct p { margin: 0; }
   .direct-label { display: block; margin: 0 0 2px; font: 700 15px/1.3 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); }
   .address { display: inline-flex; align-items: center; min-height: 44px; font: 700 19px/1.2 var(--sans); color: var(--pink); text-decoration: none; }   /* pink on the aubergine is 5.35:1 */
@@ -242,11 +240,18 @@
   .field textarea { min-height: 128px; resize: vertical; }
   .field :is(input, textarea):focus-visible { outline: none; border-bottom-color: var(--pink); box-shadow: 0 1px 0 var(--pink); }   /* a 3px pink underline in place of the ring, which would draw a box round a field that has none; pink on the chalk is 3.07:1, over the 3:1 a field's edge needs */
   .field :is(input, textarea):-webkit-autofill { -webkit-text-fill-color: var(--bg); box-shadow: 0 0 0 1000px var(--chalk) inset; }   /* autofill keeps the chalk */
-  .brief .button { justify-self: start; gap: 10px; margin: 2px 0 0; border: 0; cursor: pointer; }
-  .brief .button::after { content: "\2192"; font-size: 1.15em; line-height: 1; }
+  .brief .button { justify-self: start; margin: 2px 0 0; border: 0; cursor: pointer; }
   .brief .button:disabled { opacity: 0.6; cursor: default; }   /* while the enquiry is on its way */
   .send { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }   /* the button, then the line that says whether it sent: beside the button where there is room, under it where there is not */
   .form-note { flex: 1 1 14rem; min-width: 0; margin: 0; font: 500 17px/1.4 var(--sans); color: var(--bg); }
+  /* Sent: the fields and the button give way to the thank-you box, in the same chalk panel with its mint block, so the answer is the whole panel and not a line beside the button. */
+  .thanks { display: none; }
+  .brief.is-sent { min-height: 300px; align-content: center; }
+  .brief.is-sent > :not(.thanks) { display: none; }
+  .brief.is-sent .thanks { display: grid; gap: 16px; }
+  .thanks:focus { outline: none; }   /* focus is put here only so that the box is read out */
+  .thanks h3 { margin: 0; font: 900 clamp(34px, 4.4vw, 52px)/1 var(--serif); letter-spacing: -0.01em; text-transform: uppercase; color: var(--bg); }
+  .thanks p { margin: 0; font: 500 19px/1.45 var(--sans); color: var(--bg); }
   .form-note.is-error { font-weight: 700; }   /* aubergine either way: neither mint nor pink is readable at this size on the chalk, so the failed line is bold and its words say what happened */
   /* Booking: the key action, left-aligned under the closing line. It takes the header button's cream, not the pink of Send enquiry in the panel below, and is the biggest button on the page: 68px tall with 21px words. The pill opens her Google Calendar booking page in a pop-up over the page: a chalk panel with the mint block behind it, a close button top right, Google's own page (which is white and cannot be restyled) filling the rest. Esc, the close button and a click on the dimmed page all close it. */
   .booking { display: flex; justify-content: flex-start; margin-top: 36px; }
@@ -272,9 +277,14 @@
 
   @media (max-width: 1070px) {
     /* The bar runs two rows from here down: the wordmark and the mark, then the menu and button right-aligned under them. The wordmark, the mark and the menu would share one row down to about 1017, so this leaves slack for other renderers' metrics. The bar is 8px, the 44px brand row, the 44px menu row and 8px. */
-    :root { --bar: 104px; }
-    .bar { min-height: 0; padding-block: 8px; row-gap: 0; }
-    .right { width: 100%; justify-content: flex-end; }
+    :root { --bar: 108px; }   /* 8px, the 48px button row, the 44px menu row, 8px */
+    /* Two rows of two: the wordmark and the Get in touch button, then the LinkedIn mark and the menu. The two groups dissolve into the grid so that the button can sit beside the wordmark. */
+    .bar { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 0 12px; min-height: 0; padding-block: 8px; }
+    .brand, .right { display: contents; }
+    .wordmark { grid-area: 1 / 1; }
+    .top .button { grid-area: 1 / 2; justify-self: end; }
+    .linkedin { grid-area: 2 / 1; justify-self: start; margin-left: -12px; }   /* the glyph, not its 44px target, lines up under the wordmark */
+    .menu { grid-area: 2 / 2; justify-self: end; }
   }
 
   @media (max-width: 1000px) {
@@ -285,9 +295,8 @@
   }
 
   @media (max-width: 860px) {
-    /* One column: the headline is 13.6% of the screen between the gutters, with a 36px floor that only bites under 265px wide. The wordmark keeps its 36px down to 375 and then shrinks so that it (7.89 of its ems with the full stop) and the mark's 44px fit between the gutters: 35px at 360, 29.9px at 320. */
-    :root { --gutter: 20px; --copy: calc(100vw - 2 * var(--gutter)); --h1: clamp(36px, min(0.136 * var(--copy), 7.2vh), 92px); --wm: min(36px, (var(--copy) - 44px) / 7.89); }
-    .top .button { display: none; }           /* the hero carries the button */
+    /* One column: the headline is 13.6% of the screen between the gutters, with a 36px floor that only bites under 265px wide. The wordmark (7.89 of its ems with the full stop) takes what the header button and a 12px gap leave between the gutters: 24.5px at 390, 20.7px at 360. */
+    :root { --gutter: 20px; --copy: calc(100vw - 2 * var(--gutter)); --h1: clamp(36px, min(0.136 * var(--copy), 7.2vh), 92px); --wm: min(36px, (var(--copy) - 157px) / 7.89); }
     .menu { gap: 20px; }
     .top .menu li:first-child { display: none; }   /* the wordmark is the home link */
     .hero { grid-template-columns: 1fr; gap: 36px; padding-block: 32px 44px; }
@@ -607,8 +616,8 @@
       <a class="button book" href="https://calendar.app.google/QmcrzWnnVbrSzyxM6" target="_blank" rel="noopener" aria-haspopup="dialog">Book a call</a>
     </div>
     <div class="contact-grid">
-      <!-- The brief. It posts to her Formspree form. The script at the foot of the page sends it in the background and writes data-sent or data-failed into the line beside the button; without script the form posts as it is and Formspree shows its own thank-you page. The _gotcha field is Formspree's trap for bots: people never see it. -->
-      <form class="brief" action="https://formspree.io/f/xeaaykdg" method="post" data-sent="Thank you. Your message is with me and I will reply by email." data-failed="That did not send. Please try again, or email me directly.">
+      <!-- The brief. It posts to her Formspree form. The script at the foot of the page sends it in the background: when it has gone the fields give way to the thank-you box at the foot of the form, and when it has not, data-failed is written into the line beside the button; without script the form posts as it is and Formspree shows its own thank-you page. The _gotcha field is Formspree's trap for bots: people never see it. -->
+      <form class="brief" action="https://formspree.io/f/xeaaykdg" method="post" data-failed="That did not send. Please try again, or email me directly.">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
         <p class="field">
           <label for="your-name">Your name</label>
@@ -625,6 +634,10 @@
         <div class="send">
           <button class="button" type="submit">Send enquiry</button>
           <p class="form-note" role="status"></p>
+        </div>
+        <div class="thanks" tabindex="-1">
+          <h3>Thank you.</h3>
+          <p>Your message is with me and I will reply by email.</p>
         </div>
       </form>
       <div class="direct">
@@ -688,11 +701,11 @@
     });
   })();
 
-  /* The brief form: sends to Formspree in the background, so the visitor stays on the page and reads the result beside the button. If this never runs the form still posts on its own. */
+  /* The brief form: sends to Formspree in the background, so the visitor stays on the page: the thank-you box takes the place of the fields, or the failed line appears beside the button. If this never runs the form still posts on its own. */
   (() => {
     const form = document.querySelector('.brief');
-    const note = form && form.querySelector('.form-note'), button = form && form.querySelector('button[type="submit"]');
-    if (!note || !button || !window.fetch) return;
+    const note = form && form.querySelector('.form-note'), button = form && form.querySelector('button[type="submit"]'), thanks = form && form.querySelector('.thanks');
+    if (!note || !button || !thanks || !window.fetch) return;
     form.addEventListener('submit', async event => {
       event.preventDefault();
       button.disabled = true;
@@ -702,10 +715,16 @@
         const reply = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         sent = reply.ok;
       } catch (error) { /* offline or blocked: the failed line says so */ }
-      if (sent) form.reset();
-      note.classList.toggle('is-error', !sent);
-      note.textContent = sent ? form.dataset.sent : form.dataset.failed;
       button.disabled = false;
+      if (sent) {
+        form.reset();
+        form.classList.add('is-sent');
+        thanks.focus({ preventScroll: true });
+        form.scrollIntoView({ block: 'center' });   /* the panel is shorter now: keep it on screen */
+        return;
+      }
+      note.classList.add('is-error');
+      note.textContent = form.dataset.failed;
     });
   })();
 
