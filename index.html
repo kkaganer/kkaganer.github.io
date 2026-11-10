@@ -270,6 +270,16 @@
 
   .foot { display: flex; align-items: center; padding-block: 24px 40px; border-top: 1px solid var(--line); font-size: 14px; }
   .foot small { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; opacity: 0.8; }
+  .cookie-settings { margin-left: auto; min-height: 44px; padding: 0; border: 0; background: none; color: inherit; font: inherit; opacity: 0.8; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }   /* brings the cookie bar back, so a yes can be changed to a no as easily as it was given */
+  .cookie-settings:hover { opacity: 1; text-decoration-color: var(--mint); }
+
+  /* Cookies: the header's own bar turned over and pinned to the foot of the screen: aubergine, the cream hairline above it, and the two answers as the bar's cream buttons at one size, so neither is the louder. */
+  .cookies { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: var(--bg); box-shadow: 0 -1px 0 var(--cream); }
+  .cookies-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 32px; padding-block: 16px; }
+  .cookies p { flex: 1 1 20rem; font-size: 16px; line-height: 1.45; }
+  .cookies-answers { display: flex; gap: 12px; }
+  .cookies .button { border: 0; background: var(--cream); cursor: pointer; }
+  .cookies .button:hover { background: var(--white); }
 
   @media (max-width: 1180px) {
     .topics { grid-template-columns: repeat(2, minmax(0, 1fr)); }   /* four across leaves 246px cards here and 207px at 1024, so two by two takes over */
@@ -344,8 +354,25 @@
     .topics, .work-grid { grid-template-columns: 1fr; }
   }
 </style>
+<!-- Google tag, held back: this only says that nothing may be stored. The tag itself (Analytics G-0NSFYRBPYH) is not loaded until the visitor accepts in the cookie bar; the script at the foot of the page does that. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+</script>
 </head>
 <body>
+
+<!-- Cookies: the bar at the foot of the screen until the visitor answers. It is first in the page so that a keyboard or a screen reader meets it first, and it stays hidden without script, when no tag is loaded either. -->
+<aside class="cookies" aria-label="Cookies" hidden>
+  <div class="wrap cookies-row">
+    <p>I use Google Analytics cookies to see how many people visit this site and how they find it. They are set only if you accept.</p>
+    <div class="cookies-answers">
+      <button class="button" type="button" data-answer="no">Decline</button>
+      <button class="button" type="button" data-answer="yes">Accept</button>
+    </div>
+  </div>
+</aside>
 
 <header class="top">   <!-- no id: a fragment of #top with no element to match is the top of the document, which a sticky header never is -->
   <div class="wrap bar">
@@ -659,6 +686,7 @@
 
 <footer class="wrap foot">
   <small>© 2026 Kristina Kaganer</small>
+  <button class="cookie-settings" type="button" hidden>Cookie settings</button>
 </footer>
 
 <script>
@@ -741,6 +769,47 @@
     });
     dialog.querySelector('.booking-close').addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });   /* the dimmed page: the panel fills the dialog, so only the backdrop lands on the dialog itself */
+  })();
+
+  /* Cookies: the Google tag is not on the page until the visitor accepts, and then only Analytics may store anything; the advertising settings stay denied. The answer is kept in this browser, so the bar is shown once. Cookie settings in the footer brings it back: a yes changed to a no clears the Analytics cookies and reloads the page, so the tag is gone too. The tag is loaded on the live domain only, so previews are never counted. */
+  (() => {
+    const bar = document.querySelector('.cookies'), settings = document.querySelector('.cookie-settings');
+    if (!bar || !settings) return;
+    const KEY = 'analytics-consent', live = /(^|\.)kristinakaganer\.com$/.test(location.hostname);
+    const read = () => { try { return localStorage.getItem(KEY); } catch (error) { return null; } };
+    const keep = answer => { try { localStorage.setItem(KEY, answer); } catch (error) { /* storage is off: the bar is shown again next time */ } };
+    let tagged = false, reopened = false;
+    const tag = () => {
+      if (tagged || !live) return;
+      tagged = true;
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('js', new Date());
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-PLPWQW6R';
+      document.head.append(script);
+    };
+    const clear = () => {
+      const host = location.hostname.replace(/^www\./, '');
+      document.cookie.split(';').map(cookie => cookie.split('=')[0].trim()).filter(name => name === '_ga' || name.startsWith('_ga_')).forEach(name => {
+        ['', `; domain=${host}`, `; domain=.${host}`].forEach(domain => { document.cookie = `${name}=; Max-Age=0; path=/${domain}`; });
+      });
+    };
+    bar.addEventListener('click', event => {
+      const button = event.target.closest('[data-answer]');
+      if (!button) return;
+      const yes = button.dataset.answer === 'yes';
+      keep(yes ? 'yes' : 'no');
+      bar.hidden = true;
+      if (yes) tag();
+      else if (tagged) { gtag('consent', 'update', { analytics_storage: 'denied' }); clear(); location.reload(); return; }
+      if (reopened) settings.focus();
+    });
+    settings.hidden = false;
+    settings.addEventListener('click', () => { reopened = true; bar.hidden = false; bar.querySelector('button').focus(); });
+    const answer = read();
+    if (answer === 'yes') tag();
+    else if (answer !== 'no') bar.hidden = false;
   })();
 </script>
 
