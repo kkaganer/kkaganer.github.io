@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy policy · Kristina Kaganer</title>
+<meta name="description" content="What personal information kristinakaganer.com collects, why, and what you can do about it.">
+<meta name="theme-color" content="#1D0535">
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@700&family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@800;900&display=swap" rel="stylesheet">
+<style>
+  /* The home page's tokens, header, button, footer and cookie bar, copied as they are there, so the two pages are one site. Only the .policy rules are this page's own. */
+  :root {
+    --bg: #1D0535;      /* aubergine */
+    --cream: #F0EBD5;   /* headline, wordmark */
+    --chalk: #F4F1DE;
+    --mint: #0DF0C8;    /* the full stops and the link underline */
+    --pink: #FF2D8E;    /* buttons */
+    --pink-hover: #FF5CA8;
+    --white: #FFFFFF;   /* nav links and body copy */
+    --line: rgba(240, 235, 213, 0.18);
+    --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+    --sans: "Outfit", "Helvetica Neue", Arial, sans-serif;
+    --brand: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;   /* the wordmark */
+    --gutter: 56px;
+    --copy: calc((min(100vw, 1280px) - 2 * var(--gutter) - 48px) * 0.55);
+    --h1: clamp(40px, min(0.136 * var(--copy), 7.2vh), 92px);
+    --wm: 36px;
+    --bar: 80px;
+  }
+  * { box-sizing: border-box; }
+  html { color-scheme: dark; background: var(--bg); scroll-padding-top: var(--bar); }
+  body { margin: 0; background: var(--bg); color: var(--white); font: 400 18px/1.5 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--mint); outline-offset: 3px; }
+  p { margin: 0; }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding-inline: var(--gutter); }
+
+  .top { position: sticky; top: 0; z-index: 20; background: var(--bg); box-shadow: 0 1px 0 var(--cream); }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: var(--bar); flex-wrap: wrap; }
+  .wordmark { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; color: var(--cream); font: 700 var(--wm)/1 var(--brand); letter-spacing: -0.02em; white-space: nowrap; }
+  .wordmark .dot { color: var(--mint); }
+  .brand { display: flex; align-items: center; }
+  .linkedin { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 44px; height: 44px; color: var(--cream); }
+  .linkedin svg { display: block; fill: currentColor; }
+  .linkedin:hover { color: var(--mint); }
+  .right { display: flex; align-items: center; gap: 32px; margin-left: auto; }
+  .menu { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; }
+  .menu a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; text-decoration: none; font: 500 17px/1 var(--sans); }
+  .menu a:hover { text-decoration: underline; text-decoration-color: var(--mint); text-decoration-thickness: 2px; text-underline-offset: 7px; }
+  .top .button { background: var(--cream); }
+  .top .button:hover { background: var(--white); }
+
+  .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 28px; border-radius: 999px; background: var(--pink); color: var(--bg); text-decoration: none; font: 600 16px/1 var(--sans); white-space: nowrap; }
+  .button:hover { background: var(--pink-hover); }
+
+  /* The policy: one column of plain text. The title is the home page's section heading with its mint full stop, the section titles are its card titles, and the links carry the menu's mint underline. */
+  .policy { padding-block: 64px 96px; }
+  .policy h1 { margin: 0 0 16px; font: 900 min(clamp(40px, 7vw, 72px), var(--h1))/0.95 var(--serif); text-transform: uppercase; letter-spacing: -0.01em; color: var(--cream); }
+  .policy h1 span { color: var(--mint); }
+  .policy .updated { margin: 0 0 36px; font: 500 14px/1.3 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240, 235, 213, 0.62); }
+  .policy .text { max-width: 44rem; }
+  .policy h2 { margin: 56px 0 16px; font: 900 26px/1.1 var(--serif); letter-spacing: -0.01em; text-transform: uppercase; color: var(--cream); }
+  .policy h3 { margin: 28px 0 8px; font: 700 15px/1.3 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--cream); }
+  .policy p, .policy ul { margin: 0 0 16px; }
+  .policy ul { display: grid; gap: 8px; padding-left: 22px; }
+  .policy .text a { text-decoration: underline; text-decoration-color: var(--mint); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  .policy .text a:hover { color: var(--mint); }
+  .policy .name { font-weight: 600; color: var(--cream); overflow-wrap: anywhere; }   /* the name of a cookie */
+
+  .foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0 24px; padding-block: 24px 40px; border-top: 1px solid var(--line); font-size: 14px; }
+  .foot small { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; opacity: 0.8; }
+  .foot-link { display: inline-flex; align-items: center; min-height: 44px; opacity: 0.8; text-underline-offset: 4px; }
+  .foot-link:hover, .foot-link[aria-current] { opacity: 1; text-decoration-color: var(--mint); }
+  .cookie-settings { margin-left: auto; min-height: 44px; padding: 0; border: 0; background: none; color: inherit; font: inherit; opacity: 0.8; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+  .cookie-settings:hover { opacity: 1; text-decoration-color: var(--mint); }
+
+  .cookies { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: var(--bg); box-shadow: 0 -1px 0 var(--cream); }
+  .cookies-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 32px; padding-block: 16px; }
+  .cookies p { flex: 1 1 20rem; font-size: 16px; line-height: 1.45; }
+  .cookies-answers { display: flex; gap: 12px; }
+  .cookies .button { border: 0; background: var(--cream); cursor: pointer; }
+  .cookies .button:hover { background: var(--white); }
+
+  @media (max-width: 1070px) {
+    :root { --bar: 108px; }
+    .bar { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 0 12px; min-height: 0; padding-block: 8px; }
+    .brand, .right { display: contents; }
+    .wordmark { grid-area: 1 / 1; }
+    .top .button { grid-area: 1 / 2; justify-self: end; }
+    .linkedin { grid-area: 2 / 1; justify-self: start; margin-left: -12px; }
+    .menu { grid-area: 2 / 2; justify-self: end; }
+  }
+
+  @media (max-width: 860px) {
+    :root { --gutter: 20px; --copy: calc(100vw - 2 * var(--gutter)); --h1: clamp(36px, min(0.136 * var(--copy), 7.2vh), 92px); --wm: min(36px, (var(--copy) - 157px) / 7.89); }
+    .menu { gap: 20px; }
+    .top .menu li:first-child { display: none; }   /* the wordmark is the home link */
+    .policy { padding-block: 44px 64px; }
+    .policy h2 { margin-top: 44px; font-size: 22px; }
+    .cookie-settings { margin-left: 0; }
+  }
+</style>
+<!-- Google tag, held back: this only says that nothing may be stored. The tag itself (Analytics G-0NSFYRBPYH) is not loaded until the visitor accepts in the cookie bar; the script at the foot of the page does that. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+</script>
+</head>
+<body>
+
+<!-- Cookies: the same bar as on the home page. -->
+<aside class="cookies" aria-label="Cookies" hidden>
+  <div class="wrap cookies-row">
+    <p>I use Google Analytics cookies to see how many people visit this site and how they find it. They are set only if you accept.</p>
+    <div class="cookies-answers">
+      <button class="button" type="button" data-answer="no">Decline</button>
+      <button class="button" type="button" data-answer="yes">Accept</button>
+    </div>
+  </div>
+</aside>
+
+<header class="top">
+  <div class="wrap bar">
+    <div class="brand">
+      <a class="wordmark" href="../">Kristina Kaganer<span class="dot">.</span></a>
+      <a class="linkedin" href="https://www.linkedin.com/in/kristinakaganer" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </div>
+    <nav class="right" aria-label="Main">
+      <ul class="menu">
+        <li><a href="../">Home</a></li>
+        <li><a href="../#about">About</a></li>
+        <li><a href="../#speaking">Speaking</a></li>
+        <li><a href="../#work">Work</a></li>
+        <li><a href="../#writing">Writing</a></li>
+      </ul>
+      <a class="button" href="../#contact">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap policy">
+  <h1>Privacy policy<span>.</span></h1>
+  <p class="updated">Last updated 10 November 2026</p>
+
+  <div class="text">
+    <p>This page explains what personal information this website collects, why, and what you can do about it.</p>
+
+    <h2>Who is responsible</h2>
+    <p>This website is run by Kristina Kaganer. I am the controller of the personal information described here, which means I decide how and why it is used. To ask about anything on this page, or to use any of your rights, write to me through the <a href="../#contact">contact section</a>.</p>
+
+    <h2>What I collect and why</h2>
+
+    <h3>When you send an enquiry</h3>
+    <p>The contact form asks for your name, your work email address and your message. I use them to reply to you and to discuss the work you are asking about. The form is run by Formspree, which passes your message on to me. If you email me directly, I use your email address and what you tell me in the same way.</p>
+    <p>I do this because I have a legitimate interest in answering people who get in touch and, where we go on to work together, because it is needed to agree and carry out that work.</p>
+
+    <h3>When you book a call</h3>
+    <p>The Book a call button opens my booking page, which is run by Google Calendar. It asks for your name and email address so that the call goes into both our diaries and you receive a confirmation. I use these details to hold the call and to follow up afterwards, on the same basis as an enquiry.</p>
+
+    <h3>When you visit, if you accept analytics</h3>
+    <p>With your agreement I use Google Analytics to see how many people visit, which parts of the site they look at, roughly where in the world they are (a country and a city, never an address) and how they arrived, for example from a search or a link on another site. It also records the type of device and browser. It does not tell me who you are, and I do not try to work that out.</p>
+    <p>Nothing is loaded from Google Analytics and no analytics cookies are set unless you choose Accept in the cookie bar. If you decline, or do not answer, your visit is not counted. Advertising features are switched off: the information is not used to show you adverts, and I have not allowed Google to use it for its own products.</p>
+    <p>I rely on your consent for this. You can withdraw it at any time with Cookie settings at the foot of every page.</p>
+
+    <h3>What the site needs in order to load</h3>
+    <p>The site is hosted by GitHub and its typefaces come from Google Fonts. To send you the page, both receive your IP address and basic details of your browser, as any web server does. I have no access to those records and do not use them to identify anyone. This is necessary to run a working website, which is my legitimate interest.</p>
+
+    <h2>Cookies</h2>
+    <p>This site sets no cookies of its own unless you accept analytics.</p>
+    <ul>
+      <li><span class="name">_ga</span> and <span class="name">_ga_0NSFYRBPYH</span> are set by Google Analytics if you accept. They hold a random number that tells one browser from another, so that visits can be counted. They last for up to two years.</li>
+      <li><span class="name">analytics-consent</span> is not a cookie but a note kept in your browser’s storage for this site. It remembers whether you accepted or declined, so that you are not asked on every visit. It stays until you clear your browser’s data for this site.</li>
+    </ul>
+    <p>To change your answer, choose Cookie settings at the foot of any page. If you change a yes to a no, the analytics cookies are deleted.</p>
+    <p>The booking pop-up shows Google’s own page, and Google may set its own cookies when you open it.</p>
+
+    <h2>Who sees your information</h2>
+    <p>I do not sell your information or pass it to anyone for their own marketing. It is handled for me by the services that run this site and my email:</p>
+    <ul>
+      <li><a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener">Formspree</a>, for the contact form</li>
+      <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google</a>, for email, the booking page, typefaces and, if you accept, Analytics</li>
+      <li><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub</a>, for hosting</li>
+    </ul>
+    <p>These companies are based in the United States, so your information may be processed outside the UK. Where it is, it is protected by the safeguards that UK law provides for, such as the UK-US data bridge or standard contractual clauses.</p>
+
+    <h2>How long I keep it</h2>
+    <ul>
+      <li>Enquiries, emails and call bookings: for as long as I need them to deal with your request and, if we work together, as a record of that work. You can ask me to delete them sooner.</li>
+      <li>Analytics: Google deletes information linked to an individual browser after 14 months at most. After that only totals remain, which identify no one.</li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>Under UK data protection law you can ask me to:</p>
+    <ul>
+      <li>tell you what information I hold about you and give you a copy</li>
+      <li>correct it if it is wrong</li>
+      <li>delete it</li>
+      <li>stop or limit how I use it</li>
+      <li>give it to you, or to someone you choose, in a format that can be reused</li>
+    </ul>
+    <p>Where I rely on your consent, you can withdraw it at any time. To use any of these rights, write to me through the <a href="../#contact">contact section</a>. There is no charge, and I will reply within one month.</p>
+    <p>If you are unhappy with how I have handled your information, please tell me first so that I can put it right. You also have the right to complain to the Information Commissioner’s Office at <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener">ico.org.uk/make-a-complaint</a> or on 0303 123 1113.</p>
+
+    <h2>Other websites</h2>
+    <p>This site links to other websites, such as LinkedIn and the publications I write for. They have their own privacy policies, and I am not responsible for them.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>I will update this page if the way the site handles information changes. The date at the top shows the latest version.</p>
+  </div>
+</main>
+
+<footer class="wrap foot">
+  <small>© 2026 Kristina Kaganer</small>
+  <a class="foot-link" href="./" aria-current="page">Privacy policy</a>
+  <button class="cookie-settings" type="button" hidden>Cookie settings</button>
+</footer>
+
+<script>
+  /* Cookies: the same script as on the home page. The Google tag is not on the page until the visitor accepts, and then only Analytics may store anything; the advertising settings stay denied. The answer is kept in this browser, so the bar is shown once. Cookie settings in the footer brings it back: a yes changed to a no clears the Analytics cookies and reloads the page, so the tag is gone too. The tag is loaded on the live domain only, so previews are never counted. */
+  (() => {
+    const bar = document.querySelector('.cookies'), settings = document.querySelector('.cookie-settings');
+    if (!bar || !settings) return;
+    const KEY = 'analytics-consent', live = /(^|\.)kristinakaganer\.com$/.test(location.hostname);
+    const read = () => { try { return localStorage.getItem(KEY); } catch (error) { return null; } };
+    const keep = answer => { try { localStorage.setItem(KEY, answer); } catch (error) { /* storage is off: the bar is shown again next time */ } };
+    let tagged = false, reopened = false;
+    const tag = () => {
+      if (tagged || !live) return;
+      tagged = true;
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      gtag('js', new Date());
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-PLPWQW6R';
+      document.head.append(script);
+    };
+    const clear = () => {
+      const host = location.hostname.replace(/^www\./, '');
+      document.cookie.split(';').map(cookie => cookie.split('=')[0].trim()).filter(name => name === '_ga' || name.startsWith('_ga_')).forEach(name => {
+        ['', `; domain=${host}`, `; domain=.${host}`].forEach(domain => { document.cookie = `${name}=; Max-Age=0; path=/${domain}`; });
+      });
+    };
+    bar.addEventListener('click', event => {
+      const button = event.target.closest('[data-answer]');
+      if (!button) return;
+      const yes = button.dataset.answer === 'yes';
+      keep(yes ? 'yes' : 'no');
+      bar.hidden = true;
+      if (yes) tag();
+      else if (tagged) { gtag('consent', 'update', { analytics_storage: 'denied' }); clear(); location.reload(); return; }
+      if (reopened) settings.focus();
+    });
+    settings.hidden = false;
+    settings.addEventListener('click', () => { reopened = true; bar.hidden = false; bar.querySelector('button').focus(); });
+    const answer = read();
+    if (answer === 'yes') tag();
+    else if (answer !== 'no') bar.hidden = false;
+  })();
+</script>
+
+</body>
+</html>

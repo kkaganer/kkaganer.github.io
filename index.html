@@ -268,8 +268,10 @@
   .booking-dialog iframe { display: block; width: 100%; height: 100%; border: 0; background: #fff; color-scheme: light; }
   html:has(.booking-dialog[open]) { overflow: hidden; }   /* the page behind holds still while the pop-up is open */
 
-  .foot { display: flex; align-items: center; padding-block: 24px 40px; border-top: 1px solid var(--line); font-size: 14px; }
+  .foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0 24px; padding-block: 24px 40px; border-top: 1px solid var(--line); font-size: 14px; }
   .foot small { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; opacity: 0.8; }
+  .foot-link { display: inline-flex; align-items: center; min-height: 44px; opacity: 0.8; text-underline-offset: 4px; }   /* the privacy policy, beside the copyright line */
+  .foot-link:hover { opacity: 1; text-decoration-color: var(--mint); }
   .cookie-settings { margin-left: auto; min-height: 44px; padding: 0; border: 0; background: none; color: inherit; font: inherit; opacity: 0.8; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }   /* brings the cookie bar back, so a yes can be changed to a no as easily as it was given */
   .cookie-settings:hover { opacity: 1; text-decoration-color: var(--mint); }
 
@@ -348,6 +350,7 @@
     .booking-dialog { width: calc(100vw - 16px); height: calc(100vh - 16px); height: calc(100dvh - 16px); box-shadow: none; }   /* the pop-up takes the phone's screen, 8px of the dimmed page round it */
     .booking-panel { padding: 0 6px 6px; }
     .booking-close { margin-right: -2px; }
+    .cookie-settings { margin-left: 0; }   /* the footer wraps here: Cookie settings starts the second row at the gutter */
   }
 
   @media (max-width: 600px) {
@@ -686,6 +689,7 @@
 
 <footer class="wrap foot">
   <small>© 2026 Kristina Kaganer</small>
+  <a class="foot-link" href="privacy/">Privacy policy</a>
   <button class="cookie-settings" type="button" hidden>Cookie settings</button>
 </footer>
 
